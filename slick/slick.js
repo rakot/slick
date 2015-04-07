@@ -373,8 +373,12 @@
         }
 
         if (_.slideCount > _.options.slidesToShow && _.paused !== true) {
+            var speed = _.options.autoplaySpeed;
+            if(typeof speed === 'object' && speed !== null && speed.default ) {
+                speed = speed[_.currentSlide] || speed.default;
+            }
             _.autoPlayTimer = setInterval(_.autoPlayIterator,
-                _.options.autoplaySpeed);
+                speed);
         }
 
     };
